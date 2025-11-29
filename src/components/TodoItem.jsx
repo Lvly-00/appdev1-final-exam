@@ -3,7 +3,7 @@ import React from "react";
 function TodoItem({ todo, theme, onToggleComplete, onDelete }) {
   return (
     <li className={`todo ${theme}-todo ${todo.completed ? "completed" : ""}`}>
-      <span className="todo-item">{todo.text}</span>
+      <span className="todo-item">{todo.title}</span> {/* <-- Changed here */}
       <button
         className={`check-btn ${theme}-button`}
         onClick={onToggleComplete}

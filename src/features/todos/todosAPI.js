@@ -1,15 +1,16 @@
 import axios from 'axios'
 
+// Use environment variable (required in exam)
 const API_BASE =
     import.meta.env.VITE_APP_API_URL || 'https://jsonplaceholder.typicode.com'
 
+// Axios instance
 const instance = axios.create({
     baseURL: API_BASE,
     headers: {
         'Content-Type': 'application/json',
     },
 })
-
 
 
 // GET /todos (limit to 20 to match template behavior)
@@ -37,11 +38,8 @@ export const deleteTodoAPI = async(id) => {
     return id // match old behavior (resolve with id)
 }
 
-/* ============================
-     USERS API (Login)
-   ============================ */
 
-// GET /users?limit=3
+
 export const getUsersAPI = async(limit = 3) => {
     const res = await instance.get('/users')
     return res.data.slice(0, limit)
