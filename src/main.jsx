@@ -4,6 +4,8 @@ import './index.css'
 import App from './App.jsx'
 import { Provider } from "react-redux";
 import { store } from "./app/store";
+import './CSS/main.css'
+import './CSS/corner.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
