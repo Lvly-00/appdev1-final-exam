@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DateTime from "../JS/time";
+import AddTodoForm from "../components/AddTodoForm";
+import TodoList from "../components/TodoList";
 
 const THEMES = ["standard", "light", "darker"];
 
@@ -24,8 +26,7 @@ function Todos() {
     document.body.className = theme;
   }, [theme]);
 
-  const addTodo = (e) => {
-    e.preventDefault();
+  const addTodo = () => {
     const trimmed = input.trim();
     if (!trimmed) {
       alert("You must write something!");
@@ -74,20 +75,7 @@ function Todos() {
         </h1>
       </div>
 
-      <div id="form">
-        <form onSubmit={addTodo}>
-          <input
-            className={`${theme}-input todo-input`}
-            type="text"
-            placeholder="Add a task."
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
-          <button className={`todo-btn ${theme}-button`} type="submit">
-            I Got This!
-          </button>
-        </form>
-      </div>
+      <AddTodoForm theme={theme} input={input} setInput={setInput} onAdd={addTodo} />
 
       <div className="version">
         <div className="demo version-section">
@@ -98,7 +86,7 @@ function Todos() {
             rel="noopener noreferrer"
             aria-label="GitHub Repo"
           >
-            {/* SVG here */}
+            {/* Include your GitHub SVG icon here as before */}
             <svg
               width={80}
               height={80}
@@ -153,34 +141,12 @@ function Todos() {
           </p>
         </div>
 
-        <div id="myUnOrdList">
-          <ul className="todo-list">
-            {todos.map((todo, index) => (
-              <li
-                key={index}
-                className={`todo ${theme}-todo ${todo.completed ? "completed" : ""}`}
-              >
-                <span className="todo-item">{todo.text}</span>
-                <button
-                  className={`check-btn ${theme}-button`}
-                  onClick={() => toggleComplete(index)}
-                  aria-label="Toggle complete"
-                  type="button"
-                >
-                  <i className="fas fa-check"></i>
-                </button>
-                <button
-                  className={`delete-btn ${theme}-button`}
-                  onClick={() => deleteTodo(index)}
-                  aria-label="Delete todo"
-                  type="button"
-                >
-                  <i className="fas fa-trash"></i>
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <TodoList
+          todos={todos}
+          theme={theme}
+          toggleComplete={toggleComplete}
+          deleteTodo={deleteTodo}
+        />
       </div>
     </>
   );
