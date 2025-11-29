@@ -1,10 +1,8 @@
 import axios from 'axios'
 
-// Use environment variable (required in exam)
 const API_BASE =
     import.meta.env.VITE_APP_API_URL || 'https://jsonplaceholder.typicode.com'
 
-// Axios instance
 const instance = axios.create({
     baseURL: API_BASE,
     headers: {
@@ -12,9 +10,7 @@ const instance = axios.create({
     },
 })
 
-/* ============================
-     TODOS API
-   ============================ */
+
 
 // GET /todos (limit to 20 to match template behavior)
 export const getTodosAPI = async() => {

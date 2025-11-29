@@ -7,7 +7,7 @@ export default function Home() {
         <div>
             <h1>Welcome to the Todo App</h1>
             <p>
-                <Link to="/login">Logout</Link>.
+                <Link to="/login">Logout</Link>
             </p>
             <p>
                 <Link to="/todos">Create a Note</Link> to manage todos.
